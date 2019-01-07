@@ -1,6 +1,7 @@
 # @param x character; vairaible name or flag to transform or test.
 
-java_flag_test <- function(x) grepl( '^-\\S*$', x )
+# Java flags cannot begin with a number by default
+java_flag_test <- function(x) grepl( '^-[[:upper:][:lower:]]\\S*$', x )
 
 java_flag_to_name <- function(x) gsub( "^-", "", x)
 
@@ -13,14 +14,18 @@ java_name_to_flag <- function(x)  paste0( "-" , x )
 #'  
 #' @details 
 #'   Functions for enabling Java-style command-line options. Java-style options
-#'   are characterized by a single dash (\code{-}) before the option name.  
-#'      
+#'   are characterized by a single dash (`-`) before the option name.  
+#'   
+#'   By conventions, Java-style options cannot must begin with a upper or lower
+#'   case letter.         
+#'       
 #' @seealso 
-#'   Non-exported function \code{*_flag_test}, \code{*_flag_to_name} and 
-#'   \code{*_name_to_flag} \cr
-#'   \code{\link{gnu_style}} \cr
-#'   \code{\link{java_style}} \cr
-#'   \code{\link{ms_style}}
+#' 
+#'   - Non-exported function `*_flag_test`, `*_flag_to_name` and 
+#'     `*_name_to_flag` 
+#'   - [gnu_style] 
+#'   - [java_style] 
+#'   - [ms_style] 
 #'      
 #' @rdname java_style
 #' @export
